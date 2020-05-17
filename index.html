@@ -10,7 +10,7 @@
     <nav class="navbar">
         <ul class="navContainer" style="list-style: none;">
             
-            <li class="navItem">
+            <li class="navItem" id="homeButton" style="cursor: pointer;">
                 SFF Filmbibiliotek
             </li>
 
@@ -20,7 +20,7 @@
 
             <li class="navItem">
                 <div class="dropdown">
-                    <button class="dropdown-btn">Kontoalternativ</button>
+                    <div class="dropdown-btn">Kontoalternativ</div>
                     <div id="nav-dropdown" class="dropdown-content">
 
                     </div>
@@ -31,9 +31,20 @@
     </nav>
 
     <div class="pageContent">
-        <div id="mainContent">
-            
+        <div id="loginBox" class="popout" style="display: none;">
+            <div class="popout-content">
+                <button id="loginToggle" onclick="ShowLogin()" style="float: left; margin-left: 0;">&times;</button>
+                <br>
+                Logga in
+                <br><br>
+                <input type="text" id="username" placeholder="Användarnamn">
+                <br>
+                <input type="password" placeholder="Lösenord" id="password">
+                <br>
+                <button id="loginButton">Logga in</button>
+            </div>
         </div>
+        <div id="mainContent"></div>
     </div>
 
     <footer>

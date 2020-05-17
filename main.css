@@ -89,11 +89,34 @@ nav {
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(250, 95, 255);
-    display: flex;
+}
+
+.popout {
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-top: 5%;
+    z-index: 1000;
+    display: none;
+    width: 40%;
+    height: 50%;
+    background-color: rgb(117, 233, 248);
+    align-content: center;
+
+    position: fixed;
+}
+
+.popout-content {
+    margin: auto;
+    width: 80%;
+    text-align: center;
 }
 
 .movieTable {
     /* TODO: Make CSS for the table that displays movies */
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+    text-align: center;
 }
 
 footer {
