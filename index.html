@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
+    <script src="PageContent.js"></script>
+    <script src="Login.js"></script>
+    <script src="Objects.js"></script>
     <title>SFF - Client</title>
 </head>
 <body>
@@ -33,15 +36,9 @@
     <div class="pageContent">
         <div id="loginBox" class="popout" style="display: none;">
             <div class="popout-content">
-                <button id="loginToggle" onclick="ShowLogin()" style="float: left; margin-left: 0;">&times;</button>
+                <button onclick="ShowLogin()" style="float: left; margin-left: 0;">&times;</button>
                 <br>
-                Logga in
-                <br><br>
-                <input type="text" id="username" placeholder="Användarnamn">
-                <br>
-                <input type="password" placeholder="Lösenord" id="password">
-                <br>
-                <button id="loginButton">Logga in</button>
+                
             </div>
         </div>
         <div id="mainContent"></div>
@@ -50,6 +47,6 @@
     <footer>
 
     </footer>
-    <script src="script.js"></script>
+    <script src="Navigation.js"></script>
 </body>
 </html>
