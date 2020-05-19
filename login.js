@@ -16,7 +16,7 @@ function Logout() {
         mainContent.insertAdjacentText("beforeend", "Du har loggats ut");
         PopulateNavbar();
 
-        setTimeout(PopulatePage, 2000);
+        setTimeout(GeneratePage, 2000);
     }
 }
 
@@ -34,9 +34,8 @@ function CheckLoginDetails(item) {
             document.getElementById("loginBox").insertAdjacentHTML("beforeend", '<p>Välkommen ' + item.name + '</p>');
             document.getElementById("loginToggle").addEventListener("click", ShowLogin);
 
-            setTimeout((userName, password) => {
-                userName = null;
-                password = null;
+            setTimeout(() => {
+                userName = "";
             }, 100);
         }
     }    

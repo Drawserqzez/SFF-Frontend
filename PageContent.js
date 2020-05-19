@@ -4,11 +4,23 @@ function PopulateModal() {
 
 }
 
-function PopulatePage() {
+async function LoadData() {
+    document.getElementById("mainContent").innerHTML = await GeneratePage();
+}
+
+async function GeneratePage() {
+    let table = ''
+    + '<table class="movieTable">' 
+    +   '\n\t<thead>'
+    +       '\n\t<tr>'
+    +           '\n\t<th>Name</th>'
+    +           '\n\t<th>Stock</th>'
+    +       '\n\t</tr>'
+    +   '\n\t</thead>'
+    +   '\n\t<tbody>';
+    console.log("fetching movies");
     
-    if (sessionStorage.getItem("movieData") === null || "undefined" === sessionStorage.getItem("movieData")) {       
-        console.log("fetching movies");
-         
+    if (sessionStorage.getItem("movieData") === null || "undefined" === sessionStorage.getItem("movieData")) {  
         fetch("https://localhost:5001/api/Film")
         .then((responses) => {
             console.log("got response");
@@ -18,73 +30,42 @@ function PopulatePage() {
             console.log(json);
             
             if (json.length == 0 || json === null) {
-                mainContent.innerHTML = '<p>Ingen data hittades. <a onclick="PopulatePage()" href="#">Försök igen.</a></p>';
+                table = '<p>Ingen data hittades. <a onclick="GeneratePage()" href="#">Försök igen.</a></p>';
             } 
             else {
-                mainContent.innerHTML =
-                '<table class="movieTable">' +
-                    '\n\t<thead>' + 
-                        '\n\t<tr>' +
-                            '\n\t<th>Name</th>' +
-                            '\n\t<th>Stock</th>' +
-                        '\n\t</tr>' +
-                    '\n\t</thead>' +
-                    '\n\t<tbody id="movieTable">' + 
-                    '\n\t</tbody>' +
-                '\n</table>';
-                
-                json.forEach(InsertMovies);
+                table = await InsertMovies(json, table);
 
                 sessionStorage.setItem("movieData", JSON.stringify(json));
             }
         });
+
+        // TODO: Lös faktumet att fetch är asynkront
     }
     else {
         console.log("found existing data");
-        mainContent.innerHTML =
-                '<table class="movieTable">' +
-                    '\n\t<thead>' + 
-                        '\n\t<tr>' +
-                            '\n\t<th>Name</th>' +
-                            '\n\t<th>Stock</th>' +
-                        '\n\t</tr>' +
-                    '\n\t</thead>' +
-                    '\n\t<tbody id="movieTable">' + 
-                    '\n\t</tbody>' +
-                '\n</table>';
-
+        
         let data = JSON.parse(sessionStorage.getItem("movieData"));
-        data.forEach(InsertMovies);
+        table = await InsertMovies(data, table); 
     }
+        
+        table += ''
+        +   '\n\t</tbody>'
+        + '\n</table>';
+
+        return table;
 }
 
-function InsertMovies(item) {
-    let movieTable = document.getElementById("movieTable");
+async function InsertMovies(data, table) {
+    for (let i = 0; i < data.length; i++) {
+        table +=
+            '<tr>'
+            +   '\n<td>' + data[i].name + '</td>'
+            +   '\n<td>' + data[i].stock + '</td>'
+            '\n</tr>';
 
-    movieTable.innerHTML += 
-        '<tr>' +
-            '\n<td>' + item.name + '</td>' + 
-            '\n<td>' + item.stock + '</td>' + 
-        '\n</tr>';
+    }
+
+    return table;
 }
 
-
-// function PopulateNavbar() {
-//     let dropdown = document.getElementById("nav-dropdown");
-//     let notLoggedIn = localStorage.getItem("loggedIn") === null;
-    
-//     let link = '';
-//     if (notLoggedIn) {
-//         link = '<a id="loginToggle" href="#">Logga In</a>';
-//         dropdown.innerHTML = link;
-//         let loginToggle = document.getElementById("loginToggle");
-//         loginToggle.addEventListener("click", ShowLogin);
-//     }
-//     else {
-//         link = '<a id="logoutButton" href="#">Logga Ut</a>';
-//         dropdown.innerHTML = link;
-//         let logoutButton = document.getElementById("logoutButton");
-//         logoutButton.addEventListener("click", Logout);
-//     }
-// }
 
