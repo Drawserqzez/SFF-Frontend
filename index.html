@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <script src="login.js"></script>
-    <script src="PageContent.js"></script>
     <title>SFF - Client</title>
 </head>
 <body>
@@ -14,10 +12,8 @@
     </nav>
 
     <div class="pageContent">
-        <div id="loginBox" class="popout" style="display: none;">
-            <div class="popout-content">
-                <button onclick="ShowLogin()" style="float: left; margin-left: 0;">&times;</button>
-                <br>
+        <div id="modalBox" class="modal" style="display: none;">
+            <div id="modalContent" class="modalContent">
                 
             </div>
         </div>
@@ -27,6 +23,6 @@
     <footer>
 
     </footer>
-    <script src="Navigation.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>

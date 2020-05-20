@@ -1,31 +1,55 @@
-LoadPage();
+//#region Login
 
-async function LoadPage() {
-    await LoadData();
-    LoadNavBar();
+export function ShowLogin() {
+    document.getElementById('modalContent').innerHTML = PopulateModal('Login');
+    ShowModal();
 }
 
-
-
-function ShowLogin() {
-    let loginBox = document.getElementById("loginBox");
-    loginBox.style.display = (loginBox.style.display === "none") ? "block" : "none";
+function ShowModal() {
+    let modalBox = document.getElementById("modalBox");
+    
+    modalBox.insertAdjacentHTML('afterbegin', '<button id="closeModal" style="float: left; margin-left: 0;">&times;</button>');
+    document.getElementById('closeModal').addEventListener('click', () => {
+        ShowModal();
+        modalBox.innerHTML = '<div id="modalContent" class="popout-content"></div>';
+    });
+    
+    modalBox.style.display = (modalBox.style.display === "none") ? "block" : "none";
 }
 
-function LoadNavBar() {
+function PopulateModal(modalContentType) {
+    let action = (modalContentType !== 'Login') ? 'Registrera dig' : 'Logga in';
+    let form = `
+        <div class="modalForm">
+            <input type="text" id="userName" placeholder="Användarnamn">
+            <br>
+            <input type="password" id="password" placeholder="Lösenord">
+            <br><br>
+            <button onclick="${modalContentType}()">${action}</button>
+        </div>
+    `;
+
+    // console.log(form);
+    return form;
+}
+
+//#endregion Login
+
+//#region nav
+export function LoadNavBar() {
     document.getElementsByTagName("nav")[0].innerHTML = GenerateNavbar();
 }
 
 function GenerateNavbar() {
     let navString = '<ul class="navContainer">';
     
-    navString += GenerateNavItem("SFF Filmbibliotek", () => { console.log('Ingen funktionalitet än :)'); }, "cursor: pointer;");
+    navString += GenerateNavItem("SFF Filmbibliotek", () => { ShowMovieTable(); }, "cursor: pointer;");
     navString += GenerateNavItem("Bananan", () => { console.log('Ingen funktionalitet än');});
     let buttons = [];
     let mainBtn = {"Text": "", "Action": ""};
 
     if (localStorage.getItem("loggedIn") === null) {
-        mainBtn.Action = () => { Login(); };
+        mainBtn.Action = () => { ShowLogin(); };
         mainBtn.Text = "Logga in";
     }
     else {
@@ -68,3 +92,4 @@ function GenerateDropdown(header, buttons) {
 
     return html;
 }
+//#endregion nav
