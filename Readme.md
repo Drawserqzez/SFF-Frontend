@@ -2,6 +2,12 @@
 
 ---
 
+## OBS
+
+Jag har använt Firefox på windows för att skapa detta projekt, och har inte tänkt på att försäkra att det funkar i andra webbläsare. Jag ber om ursäkt ifall någonting går sönder på grund av det.
+
+---
+
 ## Reflektion
 
 Mitt projekt är byggt enligt en metod som jag lärt mig på gymnasiet i kursen webbserverprogrammering. Denna metod fungerar på så sätt att alla delar av webbsidan skapas/genereras på separata ställen. Jag har försökt emulera detta genom att använda mig av moduler och därmed separera så mycket logik som jag kunnat. Detta har även fungerat som ett extra lager abstraktion, då javascript annars behandlar allting som globalt. 
