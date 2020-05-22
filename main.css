@@ -4,7 +4,7 @@ body {
     font-family: sans-serif, Arial, Helvetica;
     height: 51vw;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* #region Navbar */
@@ -79,10 +79,12 @@ nav {
 
 /* #endregion Dropdown */
 
+/* #region MainContent */
+
 .pageContent {
     background-color: lightslategrey;
     width: 100%;
-    height: 85%;
+    height: 120%;
 }
 
 #mainContent {
@@ -91,6 +93,7 @@ nav {
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(250, 95, 255);
+    /* overflow-y: scroll; */
 }
 
 .modal {
@@ -115,10 +118,17 @@ nav {
 
 .modalForm {
     margin-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
 }
 
 .modalForm input {
     margin-top: .5vw;
+}
+
+.accountPage, .movieDisplay {
+    margin-left: 2vw;
 }
 
 .movieTable {
@@ -137,9 +147,18 @@ nav {
     text-align: center;
 }
 
+.triviaList li {
+    margin-top: 1vw;
+    margin-right: 1vw;
+}
+
+/* #endregion MainContent */
+
 footer {
     border-top: black .1vw solid;
     background-color: orange;
     width: 100%; 
-    height: 10%; 
+    height: 5%; 
+    position: sticky;
+    bottom: 0;
 }
